@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening.Plugins.Core.PathCore;
 using UnityEditor;
-using UnityEngine;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
-using static System.IO.Directory;
-using static System.IO.Path;
+using UnityEngine;
+using UnityEngine.Windows;
 using static UnityEditor.AssetDatabase;
 
-namespace MyTools {
+namespace Platformer.MyTools.Editor {
     public static class Setup {
         [MenuItem("Tools/Setup/Create Default Folders")]
         public static void CreateDefaultFolders() {
@@ -46,7 +46,7 @@ namespace MyTools {
 
         static class Folders {
             public static void CreateDefault(string root, params string[] folders) {
-                var fullpath = Path.Combine(Application.dataPath, root);
+                var fullpath = System.IO.Path.Combine(Application.dataPath, root);
                 if (!Directory.Exists(fullpath)) {
                     Directory.CreateDirectory(fullpath);
                 }
@@ -59,7 +59,7 @@ namespace MyTools {
                 var folders = folderHierarchy.Split('/');
                 var currentPath = rootPath;
                 foreach (var folder in folders) {
-                    currentPath = Path.Combine(currentPath, folder);
+                    currentPath = System.IO.Path.Combine(currentPath, folder);
                     if (!Directory.Exists(currentPath)) {
                         Directory.CreateDirectory(currentPath);
                     }
@@ -106,7 +106,7 @@ namespace MyTools {
         static class Assets {
             public static void ImportAsset(string asset, string subfolder,
                 string rootFolder = "C:/Users/adam/AppData/Roaming/Unity/Asset Store-5.x") {
-                ImportPackage(Combine(rootFolder, subfolder, asset), false);
+                //ImportPackage(Combine(rootFolder, subfolder, asset), false);
             }
         }
     }
